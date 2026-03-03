@@ -9,7 +9,8 @@ HOST_IP="${HOST_IP:-$(ip route get 1.1.1.1 2>/dev/null | awk '{for(i=1;i<=NF;i++
 HOST_IP="${HOST_IP:-$(hostname -I 2>/dev/null | awk '{print $1}')}"
 HOST_IP="${HOST_IP:-127.0.0.1}"
 
-exec uvicorn /home/lobiplayer/.scripts/hypr-api/hypr-api:app \
+cd /home/lobiplayer/.scripts/hypr-api
+exec uvicorn hypr-api:app \
   --host "$HOST_IP" \
   --port 8129 \
   --log-level warning
